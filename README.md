@@ -18,3 +18,13 @@ The goal of this project is to:
 This is not meant to be a full reference or tutorial site, but rather a **practical and evolving knowledge base**.
 
 ---
+
+🗂️ Project Structure
+
+.
+├── docs/          # Main knowledge base content
+├── blog/          # Optional: learning logs / thoughts
+├── src/           # Custom pages or components
+├── static/        # Static assets
+├── docusaurus.config.js
+└── sidebars.js    # Sidebar structure
