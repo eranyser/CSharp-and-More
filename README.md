@@ -20,11 +20,14 @@ This is not meant to be a full reference or tutorial site, but rather a **practi
 ---
 
 🗂️ Project Structure
-
-.
-├── docs/          # Main knowledge base content
-├── blog/          # Optional: learning logs / thoughts
-├── src/           # Custom pages or components
-├── static/        # Static assets
-├── docusaurus.config.js
-└── sidebars.js    # Sidebar structure
+```
+CSharpAndMore    # MonoRepo's root
+├── package-a # Another package, your actual project
+│   ├── src
+│   └── package.json # Package A's dependencies
+├── Documents   # Docusaurus root
+│   ├── docs
+│   ├── src
+│   └── package.json # Docusaurus' dependencies
+├── package.json # Monorepo's shared dependencies
+````
