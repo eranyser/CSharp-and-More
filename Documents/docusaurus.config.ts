@@ -143,6 +143,8 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      // C# is not in Prism's default bundle; without this, ```csharp blocks render as plain text.
+      additionalLanguages: ['csharp'],
     },
   } satisfies Preset.ThemeConfig,
 };
