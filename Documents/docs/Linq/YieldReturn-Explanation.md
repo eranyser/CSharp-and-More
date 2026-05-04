@@ -54,5 +54,5 @@ yield return number; // Returns one even number at a time, no need to store all 
 
 ## Key Difference
 
-Your method returns IEnumerable<int> (iterator), not List<int>. 
+Your method returns `IEnumerable<int>` (iterator), not `List<int>`. 
 This makes it a generator that produces values on-demand, similar to how LINQ methods work.

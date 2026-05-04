@@ -55,7 +55,7 @@ The above code is definetly not optimal. there are some issues make it such:
         }
     }
     ```
-- In addition inside the method *ShowEvenNumber* we have both, Business logic ```if (number % 2 == 0)``` and UI ```Console.WriteLine(number);```. If for exmaple, we need to write **Automated Test**, it is very difficult to do it for this method. The solution for this is that we could return an Array, but since we don't know how many even numbers we will have, we prefer a ```List<int>```, where we can add items dynamically.
+- In addition inside the method *ShowEvenNumber* we have both, Business logic ```if (number % 2 == 0)``` and UI ```Console.WriteLine(number);```. If for exmaple, we need to write **Automated Test**, it is very difficult to do it for this method. The solution for this is that we could return an Array, but since we don't know how many even numbers we will have, we prefer a `List<int>`, where we can add items dynamically.
     ```csharp
     internal class Program
     {
@@ -83,7 +83,7 @@ The above code is definetly not optimal. there are some issues make it such:
         }
     }
     ```
-- It still not very optimal, it is considered bad c# code. This is because in C# we don't need to build a persistent result, (```return List<int>```), in such cases. Instead of returning a *List of int* we can return an *IEnumerable<int>*, (base class for any collection). When we do so, we can use the ```yield``` to return the even numbers. The way it works is as follows:
+- It still not very optimal, it is considered bad c# code. This is because in C# we don't need to build a persistent result, (`return List<int>`), in such cases. Instead of returning a *List of int* we can return an `IEnumerable<int>`, (base class for any collection). When we do so, we can use the `yield` to return the even numbers. The way it works is as follows:
     - The fileter method will exmaine the first number, if the first number is even, it immediately return it to the calling function that will print it.
     - when the second number is examined, C# will jump again into the method. It will jump between the caller and the calee back and forth.
     ```csharp
@@ -128,7 +128,7 @@ private static bool IsEven(int number)
 Now if I want to display all **Odd** numbers, what should I have to do?
 - Duplicate the method above and create ```IsOdd(number)``` - bad solution
 - add a relevant method as a parameter to the *Filter* method and call this method with the relevant parameter method as needed.
-    In C# we write a method that get a parameter that is actually a function that recives an integer and return a boolean like this: ```Func<int, boolean>``` and we will call it *predicate* and in the implemetation we call the *predicate* method. The caller functiion can be chaged to pass the ```IsEven``` method like this:
+    In C# we write a method that get a parameter that is actually a function that recives an integer and return a boolean like this: `Func<int, bool>` and we will call it *predicate* and in the implemetation we call the *predicate* method. The caller functiion can be chaged to pass the ```IsEven``` method like this:
     ```csharp
     static void Main(string[] args)
     {
@@ -192,10 +192,56 @@ private static IEnumerable<T> Filter<T>(this IEnumerable<T> numbers, Func<T, boo
     }
 }
 ```
-The ```this``` keyword, causes the *Filter* method, to be injected into the *IEnumerable* typeץ
+The ```this``` keyword, causes the *Filter* method, to be injected into the *IEnumerable* type
+
+The 'Promblem' is that Extension Methods must be defined in a static Class, so we have to either:
+1. Change the Program Class to be static, but this is not recomended cuase:
+    - The Program class should be the entry point of your application (contains Main(string[]))
+    - Extension methods are utility functions for your domain
+    - Mixing them violates SRP—each class should have one reason to change
+2. Move the *Filter* method into another static class
+    ```csharp
+    public static class EnumerableExtensions
+    {
+        public static IEnumerable<T> Filter<T>(this IEnumerable<T> items, Func<T, bool> predicate)
+        {
+            foreach (var item in items)
+            {
+                if (predicate(item))
+                    yield return item;
+            }
+        }
+    }
+    ```
+
+    and now we can use the mehdod as follows:
+    ```csharp
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var numbers = new [] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            var result2 = numbers.Filter(number => number % 2 == 0);  // Now works!
+        }
+    }
+    ```
+The method *Filter* has never been defined on *IEnumerable*. *IEnumerabel* has no method name *Filter*. Now it has! using the ```this``` keyword we inject a method on existing type.
+
+Since the result type of our *Filter* method is *IEnumerable*, wo we can chain this methods:
+
+```csharp
+var result2 = numbers
+                .Filter(number => number % 2 == 0)
+                .Filter(number => number > 5);
+```
+
+Since we are using the ```yield return``` the numbers going back and forth form the callee to the caller, and the memory footprint is minimal.
+
+The entire code we mentioned above is already implemented by Micorosft, it was called Linq - language integrated query.
 
 **Bibilography**
-
+- [Link Explanation](https://www.youtube.com/watch?v=3T2q1oowQdY&list=PLhGL9p3BWHwtV_hn6H_uZ4vrFE3F7mY8a&index=5)
+- [![Linq Explanation](https://i.ytimg.com/vi/3T2q1oowQdY/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBqn55yPTQXCAyyYsIca2a0hi--3g)](https://www.youtube.com/watch?v=3T2q1oowQdY&list=PLhGL9p3BWHwtV_hn6H_uZ4vrFE3F7mY8a&index=5)
 - htl-mobile-computing-5 - 2019-2020
 	- [Github Repository](https://github.com/rstropek/htl-mobile-computing-5)
 	- [Slides](https://htl-mobile-computing-5.azurewebsites.net/#/)
@@ -207,3 +253,5 @@ The ```this``` keyword, causes the *Filter* method, to be injected into the *IEn
 	- [Slides](https://rstropek.github.io/htl-csharp/#/)
 
 - [Linq - From microsoft site](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
+
+- [Extenstion Method]()
