@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Linq - Simple Explanation
 
 Lets create an array of integers and we want to show all the even numbers and filter out the odd numbers. 
@@ -237,7 +241,7 @@ var result2 = numbers
 
 Since we are using the ```yield return``` the numbers going back and forth form the callee to the caller, and the memory footprint is minimal.
 
-The entire code we mentioned above is already implemented by Micorosft, it was called Linq - language integrated query.
+The entire code we mentioned above is already implemented by Micorosft, it was called Linq - [language integrated query](./LanguageIntegratedQuery.md).
 
 **Bibilography**
 - [Link Explanation](https://www.youtube.com/watch?v=3T2q1oowQdY&list=PLhGL9p3BWHwtV_hn6H_uZ4vrFE3F7mY8a&index=5)
