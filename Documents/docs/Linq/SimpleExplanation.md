@@ -254,4 +254,6 @@ The entire code we mentioned above is already implemented by Micorosft, it was c
 
 - [Linq - From microsoft site](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
 
-- [Extenstion Method]()
+- [Extenstion Method](https://www.youtube.com/watch?v=VkrKNXscoto)
+- [![Extenstion Method](https://i.ytimg.com/vi/VkrKNXscoto/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA0vVpiVvc5gfEtIdNCWLuTpfjrBw)](https://www.youtube.com/watch?v=VkrKNXscoto)
+- [Linq Tutorial](https://www.youtube.com/playlist?list=PL6n9fhu94yhWi8K02Eqxp3Xyh_OmQ0Rp6)
