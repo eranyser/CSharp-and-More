@@ -5,19 +5,28 @@
         static void Main(string[] args)
         {
             var numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            ShowEvenNumbers(numbers);
+            List<int> result = Filter(numbers);
+            foreach (int item in result)
+            {
+                Console.WriteLine(item);
+            }
         }
 
-        // This method will print only the even numbers from the provided collection 
-        private static void ShowEvenNumbers(IEnumerable<int> numbers)
+        /* This method filters the input numbers and returns a list of even numbers.
+         * It iterates through each number in the input collection, checks if it is even,
+         * and if so, adds it to the result list. Finally, it returns the list of even numbers.
+         */
+        private static List<int> Filter(IEnumerable<int> numbers)
         {
+            List<int> result = new List<int>();
             foreach (var number in numbers)
             {
                 if (number % 2 == 0)
                 {
-                    Console.WriteLine(number);
+                    result.Add(number);
                 }
             }
+            return result;
         }
     }
 }
