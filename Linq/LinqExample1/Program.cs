@@ -11,7 +11,7 @@
                             .Where(number => number % 2 == 0)
                             .Where(number => number > 5);
 
-            foreach (var number in evenNumbers)
+            foreach (var item in evenNumbers)
             {
                 Console.WriteLine(item);
             }
