@@ -101,7 +101,7 @@ The above code is definetly not optimal. there are some issues make it such:
     More about ```yield return``` you can read [here](./YieldReturn-Explanation.md) 👈
 
 As we see above the *Filter* method can be describe as iterating over all numbers and return those numbers that are even.
-In software developmnet there is an important principal: **Single Responsibility Pattern**. Thei means that every method should have a single purpose. The *Filter* method above, has two purposes:
+In software developmnet there is an important principal: **Single Responsibility Pattern**. This means that every method should have a single purpose. The *Filter* method above, has two purposes:
 - Iterating
 - decide for each iterated number, if it is even.
 - return number if it is even.
@@ -237,7 +237,7 @@ var result2 = numbers
 
 Since we are using the ```yield return``` the numbers going back and forth form the callee to the caller, and the memory footprint is minimal.
 
-The entire code we mentioned above is already implemented by Micorosft, it was called Linq - language integrated query.
+The entire code we mentioned above is already implemented by Micorosft, it was called Linq - [language integrated query](/Documents/docs/Linq/LanguageIntegratedQuery.md).
 
 **Bibilography**
 - [Link Explanation](https://www.youtube.com/watch?v=3T2q1oowQdY&list=PLhGL9p3BWHwtV_hn6H_uZ4vrFE3F7mY8a&index=5)
