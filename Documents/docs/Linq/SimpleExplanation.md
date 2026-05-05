@@ -25,7 +25,9 @@ internal class Program
 The above code is definetly not optimal. there are some issues make it such:
 - The ***numbers*** variable of the method ***ShowEvenNubmers*** that is of type ```int[]```. 
 
-    There is a known principal that we alway want to use the **least specific type** that you can handle. Suppse the caller has a List instead of Array. In this case the caller couldn not use the ***ShowEvenNubmers*** any more. There is a common type for all collection in c# It is called ***IEnumerable***. It is implemented by any kind of collection.
+    There is a known principal that we alway want to use the **least specific type** that you can handle. 
+    Suppse the caller has a List instead of Array. In this case the caller could not use the ***ShowEvenNubmers*** any more. 
+    There is a common type for all collection in c# It is called ***IEnumerable***. It is implemented by any kind of collection.
 
     ***IEnumerable*** is a:
     - Read only
