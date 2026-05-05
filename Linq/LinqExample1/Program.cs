@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             var numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            IEnumerable<int> result = Filter(numbers);
+            IEnumerable<int> result = Filter(numbers, IsEven);
             foreach (int item in result)
             {
                 Console.WriteLine(item);
@@ -16,11 +16,11 @@
          * It iterates through each number in the input collection, checks if it is even,
          * and if so, adds it to the result list. Finally, it returns the list of even numbers.
          */
-        private static IEnumerable<int> Filter(IEnumerable<int> numbers)
+        private static IEnumerable<int> Filter(IEnumerable<int> numbers, Func<int, bool> predicate)
         {
             foreach (var number in numbers)
             {
-                if (IsEven(number))
+                if (predicate(number))
                 {
                     yield return number;
                 }
