@@ -6,9 +6,9 @@
         {
             var numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var names = new[] { "Tom", "Tim", "John" };
-            IEnumerable<int> result = Filter(numbers, number => number % 2 == 0);
-            var namesStartsWithT = Filter(names, name => name.StartsWith("T"));
 
+            IEnumerable<int> result = numbers.Filter(number => number % 2 == 0);
+            var namesStartsWithT = names.Filter(name => name.StartsWith("T"));
             foreach (int item in result)
             {
                 Console.WriteLine(item);
@@ -19,18 +19,20 @@
                 Console.WriteLine(name);
             }
         }
+    }
 
-        /* This method is a custom implementation of the LINQ Where method.
-         * It takes an IEnumerable<T> and a predicate function, and yields only the elements that satisfy the predicate.
+    public static class EnumerableExtensions
+    {
+        /* This is an extension method for IEnumerable<T> that provides a filtering mechanism similar to the built-in Where method in LINQ. 
+         * It allows you to filter any collection of type T based on a provided predicate function. 
+         * The method uses 'yield return' to enable deferred execution, meaning that the filtering logic will only be applied when the resulting IEnumerable<T> is enumerated.
          */
-        private static IEnumerable<T> Filter<T>(IEnumerable<T> numbers, Func<T, bool> predicate)
+        public static IEnumerable<T> Filter<T>(this IEnumerable<T> items, Func<T, bool> predicate)
         {
-            foreach (var number in numbers)
+            foreach (var item in items)
             {
-                if (predicate(number))
-                {
-                    yield return number;
-                }
+                if (predicate(item))
+                    yield return item;
             }
         }
     }
