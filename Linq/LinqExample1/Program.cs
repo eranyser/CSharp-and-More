@@ -20,11 +20,18 @@
         {
             foreach (var number in numbers)
             {
-                if (number % 2 == 0)
+                if (IsEven(number))
                 {
                     yield return number;
                 }
             }
+        }
+
+        /* This method checks if a given number is even. It takes an integer as input and returns true if the number is even (i.e., divisible by 2 without a remainder), and false otherwise.
+         */
+        private static bool IsEven(int number)
+        {
+            return number % 2 == 0;
         }
     }
 }
