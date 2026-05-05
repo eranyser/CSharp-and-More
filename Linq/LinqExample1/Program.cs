@@ -5,22 +5,23 @@
         static void Main(string[] args)
         {
             var numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            IEnumerable<int> result = Filter(numbers);
+            IEnumerable<int> result = Filter(numbers, IsEven);
             foreach (int item in result)
             {
                 Console.WriteLine(item);
             }
         }
 
-        /* This method filters the input numbers and returns a list of even numbers.
-         * It iterates through each number in the input collection, checks if it is even,
-         * and if so, adds it to the result list. Finally, it returns the list of even numbers.
+        /* This method filters a collection of integers based on a provided predicate function. 
+         * It takes an IEnumerable of integers and a Func that defines the condition for filtering. 
+         * The method uses the yield return statement to return each number that satisfies the predicate, 
+         * allowing for deferred execution and efficient memory usage.
          */
-        private static IEnumerable<int> Filter(IEnumerable<int> numbers)
+        private static IEnumerable<int> Filter(IEnumerable<int> numbers, Func<int, bool> predicate)
         {
             foreach (var number in numbers)
             {
-                if (IsEven(number))
+                if (predicate(number))
                 {
                     yield return number;
                 }
