@@ -110,7 +110,7 @@ const config: Config = {
           items: [
             {
               label: 'Knowledge Hub',
-              to: '/docs/definition',
+              to: '/docs/toc',
             },
           ],
         },
