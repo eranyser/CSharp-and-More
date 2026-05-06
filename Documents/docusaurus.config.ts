@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Advanced C# Topics Explanation',
+  tagline: 'My Knowledge-Hub for several C# Topics',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -34,6 +34,25 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ['@docusaurus/theme-mermaid'],
+
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        // Build-time index shipped with the static site (works on GitHub Pages)
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: false,
+        language: ['en'],
+        highlightSearchTermsOnTargetPage: true,
+      },
+    ],
+  ],
 
   presets: [
     [
@@ -44,23 +63,9 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/eranyser/CSharp-and-More/tree/main/Documents/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -83,13 +88,15 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'knowledgeHubSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Knowledge Hub',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        //{to: '/blog', label: 'Blog', position: 'left'},
+        {type: 'search', position: 'right'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          //href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/eranyser/CSharp-and-More',
           label: 'GitHub',
           position: 'right',
         },
@@ -102,11 +109,12 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Knowledge Hub',
+              to: '/docs/definition',
             },
           ],
         },
+        /*
         {
           title: 'Community',
           items: [
@@ -123,17 +131,13 @@ const config: Config = {
               href: 'https://x.com/docusaurus',
             },
           ],
-        },
+        },*/
         {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/eranyser/CSharp-and-More',
             },
           ],
         },
