@@ -28,3 +28,21 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+.hero--primary {
+  background-color: #0645b2ad; /* light blue */
+}
+
+/* Larger navbar logo */
+.navbar__logo {
+  height: 3.75rem;
+}
+.navbar__logo img {
+  height: 100%;
+  width: auto;
+}
+
+/* When the same footnote is referenced multiple times, Docusaurus renders one
+   �back to content� arrow per reference. Keep the first arrow, hide the rest. */
+section[data-footnotes] a.data-footnote-backref ~ a.data-footnote-backref {
+  display: none;
+}
